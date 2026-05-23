@@ -1,12 +1,15 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import heroBg from "@/assets/hero-bg.jpg";
-import courier from "@/assets/courier.jpg";
+import heroImg from "@/assets/hero-courier.jpg";
+import packagesImg from "@/assets/packages.jpg";
+import cityImg from "@/assets/city-map.jpg";
+import cleaningImg from "@/assets/cleaning.jpg";
 import logo from "@/assets/logo-bike.png";
 import { services } from "@/lib/services-data";
 import { testimonials } from "@/lib/testimonials-data";
 import {
-  ArrowRight, Clock, MapPin, Phone, Zap, Quote, Star,
-  MessageCircle, ClipboardList, Rocket, CheckCircle2, Calendar,
+  ArrowRight, ArrowUpRight, Clock, Phone, Zap, Quote, Star,
+  MessageCircle, ClipboardList, Rocket, CheckCircle2, MapPin, Mail,
+  TrendingUp, Shield, Sparkles,
 } from "lucide-react";
 
 export const Route = createFileRoute("/")({
@@ -21,162 +24,203 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
+const marqueeItems = ["LIVRAISON EXPRESS", "★", "NETTOYAGE PRO", "★", "DÉMÉNAGEMENT", "★", "IMMOBILIER", "★", "TECHNIQUE", "★", "24H / 7J", "★"];
+
 function Index() {
   return (
-    <div>
-      {/* HERO */}
-      <section className="relative overflow-hidden min-h-[92vh] flex items-center">
-        <img src={heroBg} alt="" className="absolute inset-0 w-full h-full object-cover opacity-60" width={1920} height={1080} />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/70 to-background" />
-        <div className="absolute -right-40 top-20 w-[600px] h-[600px] rounded-full border border-primary/30 animate-spin-slow" />
-        <div className="absolute -right-20 top-40 w-[400px] h-[400px] rounded-full border border-primary/20 animate-spin-slow" style={{ animationDirection: "reverse" }} />
-
-        <div className="relative max-w-7xl mx-auto px-6 py-20 grid lg:grid-cols-12 gap-12 items-center w-full">
-          <div className="lg:col-span-7 animate-float-in">
-            <div className="inline-flex items-center gap-2 px-4 py-2 border border-primary/40 bg-primary/10 text-primary text-xs uppercase tracking-[0.3em] mb-8">
-              <span className="w-2 h-2 rounded-full bg-primary animate-pulse-red" /> Disponible 24h/24 · 7j/7
+    <div className="overflow-hidden">
+      {/* ========== HERO BENTO ========== */}
+      <section className="relative pt-28 pb-6 px-4 md:px-6">
+        <div className="max-w-[1500px] mx-auto grid grid-cols-12 grid-rows-[auto] gap-3">
+          {/* Big headline cell */}
+          <div className="col-span-12 lg:col-span-8 bento-cell p-8 md:p-14 animate-float-in min-h-[480px] flex flex-col justify-between relative">
+            <div className="absolute top-6 right-6 flex items-center gap-2 text-[10px] uppercase tracking-[0.3em] text-primary">
+              <span className="w-2 h-2 bg-primary rounded-full animate-pulse-red" /> En ligne 24/7
             </div>
-            <h1 className="font-display text-6xl md:text-8xl lg:text-9xl leading-[0.85] tracking-tight">
-              LIVRAISON<br />
-              <span className="text-gradient-red">SANS LIMITE</span><br />
-              <span className="text-muted-foreground/60">AU CAMEROUN</span>
-            </h1>
-            <p className="mt-8 text-lg md:text-xl text-muted-foreground max-w-xl">
-              <span className="text-foreground font-semibold">Efficacité et rapidité sont nos priorités.</span> Colis, multiservices, technique, immobilier — tout, partout, tout le temps.
-            </p>
-            <div className="mt-10 flex flex-wrap gap-4">
-              <a href="https://wa.me/237659315165" target="_blank" rel="noreferrer" className="group inline-flex items-center gap-3 bg-primary text-primary-foreground px-8 py-4 font-semibold uppercase tracking-widest text-sm hover:bg-primary/90 transition-all" style={{ boxShadow: "var(--shadow-red)" }}>
-                Commander maintenant
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            <div className="text-[10px] uppercase tracking-[0.4em] text-muted-foreground">N°01 — Multiservices Cameroun</div>
+            <div>
+              <h1 className="font-display text-[15vw] md:text-[10vw] lg:text-[8.5vw] leading-[0.82] tracking-tighter">
+                LIVRER.<br />
+                <span className="text-primary red-glow-text">SERVIR.</span><br />
+                <span className="outline-text">PARTOUT.</span>
+              </h1>
+              <p className="mt-8 max-w-xl text-base md:text-lg text-muted-foreground leading-relaxed">
+                Efficacité et rapidité sont nos priorités. Plus de 15 services à Yaoundé et dans tout le Cameroun, disponibles à toute heure.
+              </p>
+            </div>
+            <div className="flex flex-wrap gap-3 mt-6">
+              <a href="https://wa.me/237659315165" target="_blank" rel="noreferrer" className="group inline-flex items-center gap-3 bg-primary text-primary-foreground px-7 py-4 font-bold uppercase tracking-[0.2em] text-xs hover:-translate-y-0.5 transition-all" style={{ boxShadow: "var(--shadow-red)" }}>
+                Commander <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </a>
-              <Link to="/services" className="inline-flex items-center gap-3 border border-border px-8 py-4 font-semibold uppercase tracking-widest text-sm hover:border-primary hover:text-primary transition-colors">
-                Nos services
+              <Link to="/services" className="group inline-flex items-center gap-3 border border-border px-7 py-4 font-bold uppercase tracking-[0.2em] text-xs hover:border-primary hover:text-primary transition-colors">
+                Voir nos services <ArrowUpRight className="w-4 h-4" />
               </Link>
-            </div>
-
-            <div className="mt-16 grid grid-cols-4 gap-6 max-w-2xl">
-              {[
-                { v: "16+", l: "Services" },
-                { v: "24/7", l: "Disponible" },
-                { v: "100%", l: "National" },
-                { v: "1500+", l: "Missions" },
-              ].map((s) => (
-                <div key={s.l} className="border-l-2 border-primary pl-4">
-                  <div className="font-display text-3xl md:text-4xl">{s.v}</div>
-                  <div className="text-[10px] md:text-xs uppercase tracking-widest text-muted-foreground mt-1">{s.l}</div>
-                </div>
-              ))}
             </div>
           </div>
 
-          <div className="lg:col-span-5 relative hidden lg:block">
-            <div className="relative aspect-[4/5] overflow-hidden rounded-sm ring-glow">
-              <img src={courier} alt="Coursier TaraServices à vélo" className="w-full h-full object-cover" width={1080} height={1600} />
-              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />
-              <div className="absolute bottom-6 left-6 right-6 backdrop-blur-md bg-background/60 border border-primary/30 p-5">
-                <div className="flex items-center gap-3">
-                  <img src={logo} alt="" width={40} height={40} className="w-10 h-10" />
-                  <div>
-                    <div className="font-display text-xl">RAPIDE & FIABLE</div>
-                    <div className="text-xs text-muted-foreground uppercase tracking-wider">Coursier dédié · Yaoundé</div>
-                  </div>
-                </div>
-              </div>
-              <div className="absolute top-6 right-6 px-3 py-1.5 bg-primary text-primary-foreground text-[10px] uppercase tracking-widest font-semibold">En ligne</div>
+          {/* Hero photo cell */}
+          <div className="col-span-12 lg:col-span-4 bento-cell animate-scale-in min-h-[480px] relative group">
+            <img src={heroImg} alt="Coursier TaraServices à Yaoundé" width={1600} height={1600} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+            <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
+            <div className="absolute top-6 left-6 px-3 py-1 bg-primary text-primary-foreground text-[10px] uppercase tracking-[0.3em] font-bold">Coursier</div>
+            <div className="absolute bottom-6 left-6 right-6">
+              <div className="font-display text-3xl">RAPIDE.<br />FIABLE.</div>
+              <div className="text-xs uppercase tracking-[0.3em] text-muted-foreground mt-2">Yaoundé → Tout le pays</div>
             </div>
+          </div>
+
+          {/* Stats row */}
+          {[
+            { v: "16+", l: "Services" },
+            { v: "24/7", l: "Disponible" },
+            { v: "1500+", l: "Missions" },
+            { v: "4.9★", l: "Satisfaction" },
+          ].map((s, i) => (
+            <div key={s.l} className="col-span-6 lg:col-span-3 bento-cell p-6 md:p-8 animate-float-in" style={{ animationDelay: `${0.1 * i}s` }}>
+              <div className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground">{s.l}</div>
+              <div className="font-display text-5xl md:text-6xl mt-3 text-gradient-red">{s.v}</div>
+            </div>
+          ))}
+
+          {/* Why row */}
+          <div className="col-span-12 md:col-span-4 bento-cell p-8 group">
+            <Zap className="w-10 h-10 text-primary group-hover:scale-110 transition-transform" />
+            <h3 className="font-display text-3xl mt-6">RAPIDITÉ</h3>
+            <p className="text-muted-foreground mt-3 text-sm leading-relaxed">Intervention express dans toute la ville. Devis sous 15 minutes.</p>
+          </div>
+          <div className="col-span-12 md:col-span-4 bento-cell p-8 group">
+            <Clock className="w-10 h-10 text-primary group-hover:scale-110 transition-transform" />
+            <h3 className="font-display text-3xl mt-6">DISPONIBILITÉ</h3>
+            <p className="text-muted-foreground mt-3 text-sm leading-relaxed">Ouvert 7 jours sur 7, 24 heures sur 24. Aucune pause.</p>
+          </div>
+          <div className="col-span-12 md:col-span-4 bento-cell p-8 group">
+            <Shield className="w-10 h-10 text-primary group-hover:scale-110 transition-transform" />
+            <h3 className="font-display text-3xl mt-6">FIABILITÉ</h3>
+            <p className="text-muted-foreground mt-3 text-sm leading-relaxed">Personnel formé, missions garanties, satisfaction client 4.9/5.</p>
           </div>
         </div>
       </section>
 
-      {/* MARQUEE / Why */}
-      <section className="relative py-24 border-y border-border bg-grid-red">
-        <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-8">
-          {[
-            { i: Zap, t: "Rapidité", d: "Intervention express dans toute la ville et au-delà." },
-            { i: Clock, t: "Disponibilité", d: "Ouvert 7 jours sur 7, 24 heures sur 24." },
-            { i: MapPin, t: "Couverture", d: "Tout le territoire national couvert." },
-          ].map((f) => (
-            <div key={f.t} className="group relative p-8 border border-border bg-card hover:border-primary transition-all">
-              <div className="absolute top-0 left-0 w-12 h-12 bg-primary flex items-center justify-center -translate-x-2 -translate-y-2 group-hover:-translate-x-3 group-hover:-translate-y-3 transition-transform">
-                <f.i className="w-6 h-6 text-primary-foreground" />
-              </div>
-              <h3 className="font-display text-3xl mt-6">{f.t}</h3>
-              <p className="mt-3 text-muted-foreground">{f.d}</p>
-            </div>
+      {/* ========== MARQUEE ========== */}
+      <section className="relative py-12 border-y border-border bg-primary text-primary-foreground overflow-hidden">
+        <div className="flex whitespace-nowrap animate-marquee">
+          {[...marqueeItems, ...marqueeItems, ...marqueeItems].map((t, i) => (
+            <span key={i} className="font-display text-5xl md:text-7xl mx-6">{t}</span>
           ))}
         </div>
       </section>
 
-      {/* SERVICES PREVIEW */}
-      <section className="relative py-28">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="flex items-end justify-between flex-wrap gap-6 mb-14">
+      {/* ========== SERVICES BENTO ========== */}
+      <section className="relative py-24 px-4 md:px-6">
+        <div className="max-w-[1500px] mx-auto">
+          <div className="flex items-end justify-between flex-wrap gap-6 mb-12">
             <div>
-              <div className="text-xs uppercase tracking-[0.4em] text-primary mb-3">— Ce que nous faisons</div>
-              <h2 className="font-display text-5xl md:text-7xl">PLUS DE <span className="text-primary">15 SERVICES</span></h2>
+              <div className="text-[10px] uppercase tracking-[0.4em] text-primary mb-4 flex items-center gap-3"><span className="w-8 h-px bg-primary" /> Catalogue</div>
+              <h2 className="font-display text-6xl md:text-8xl lg:text-9xl leading-[0.85]">
+                NOS<br /><span className="text-gradient-red">SERVICES.</span>
+              </h2>
             </div>
-            <Link to="/services" className="text-sm uppercase tracking-widest text-muted-foreground hover:text-primary inline-flex items-center gap-2">
-              Voir tout <ArrowRight className="w-4 h-4" />
+            <Link to="/services" className="inline-flex items-center gap-2 px-6 py-3 border border-border hover:border-primary hover:text-primary text-xs uppercase tracking-[0.3em] font-bold transition-colors">
+              Voir les 16 services <ArrowUpRight className="w-4 h-4" />
             </Link>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-border">
-            {services.slice(0, 8).map((s) => (
-              <div key={s.title} className="bg-background p-8 hover:bg-card transition-colors group">
-                <s.icon className="w-8 h-8 text-primary group-hover:scale-110 transition-transform" />
-                <h3 className="mt-5 font-semibold text-lg">{s.title}</h3>
-                <p className="mt-2 text-sm text-muted-foreground">{s.desc}</p>
+
+          <div className="grid grid-cols-12 grid-rows-[auto] gap-3">
+            {/* Featured big */}
+            <div className="col-span-12 lg:col-span-6 lg:row-span-2 bento-cell relative min-h-[460px] group overflow-hidden">
+              <img src={packagesImg} alt="Livraison de colis" width={1024} height={1024} loading="lazy" className="absolute inset-0 w-full h-full object-cover opacity-70 group-hover:opacity-90 group-hover:scale-105 transition-all duration-700" />
+              <div className="absolute inset-0 bg-gradient-to-tr from-background via-background/60 to-transparent" />
+              <div className="absolute top-6 left-6 px-3 py-1 bg-primary text-primary-foreground text-[10px] uppercase tracking-[0.3em] font-bold">Service Phare</div>
+              <div className="absolute bottom-0 left-0 right-0 p-8">
+                <div className="text-[10px] uppercase tracking-[0.3em] text-primary mb-2">01 — Livraison</div>
+                <h3 className="font-display text-5xl md:text-6xl">COLIS<br />EXPRESS</h3>
+                <p className="text-muted-foreground mt-4 max-w-md">Envoi et livraison de colis dans toute la ville et sur l'ensemble du territoire national, à la vitesse de l'éclair.</p>
+                <Link to="/services" className="mt-6 inline-flex items-center gap-2 text-sm uppercase tracking-[0.2em] font-bold text-primary">
+                  Demander une course <ArrowRight className="w-4 h-4" />
+                </Link>
+              </div>
+            </div>
+
+            {/* Cleaning featured */}
+            <div className="col-span-12 md:col-span-6 lg:col-span-3 lg:row-span-2 bento-cell relative min-h-[460px] group overflow-hidden">
+              <img src={cleaningImg} alt="Nettoyage industriel" width={1024} height={1280} loading="lazy" className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-80 group-hover:scale-105 transition-all duration-700" />
+              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-transparent" />
+              <div className="absolute bottom-0 left-0 right-0 p-6">
+                <div className="text-[10px] uppercase tracking-[0.3em] text-primary mb-2">02 — Pro</div>
+                <h3 className="font-display text-3xl">NETTOYAGE<br />INDUSTRIEL</h3>
+                <p className="text-muted-foreground mt-3 text-sm">Bureaux, locaux, surfaces. Équipe pro discrète.</p>
+              </div>
+            </div>
+
+            {services.slice(2, 8).map((s, i) => (
+              <div key={s.title} className="col-span-6 md:col-span-4 lg:col-span-3 bento-cell p-6 group">
+                <div className="flex items-start justify-between">
+                  <s.icon className="w-7 h-7 text-primary group-hover:scale-110 transition-transform" />
+                  <span className="text-[10px] text-muted-foreground tabular-nums">0{i + 3}</span>
+                </div>
+                <h3 className="font-display text-lg mt-6 leading-tight">{s.title}</h3>
+                <p className="text-xs text-muted-foreground mt-2 line-clamp-2">{s.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* PROCESS */}
-      <section className="relative py-28 border-y border-border bg-card/50">
-        <div className="max-w-7xl mx-auto px-6">
+      {/* ========== PROCESS BENTO ========== */}
+      <section className="relative py-24 px-4 md:px-6">
+        <div className="max-w-[1500px] mx-auto">
           <div className="text-center mb-16">
-            <div className="text-xs uppercase tracking-[0.4em] text-primary mb-3">— Comment ça marche</div>
-            <h2 className="font-display text-5xl md:text-7xl">4 ÉTAPES, <span className="text-gradient-red">ZÉRO STRESS</span></h2>
+            <div className="text-[10px] uppercase tracking-[0.4em] text-primary mb-4">— Process</div>
+            <h2 className="font-display text-6xl md:text-8xl">
+              4 ÉTAPES.<br /><span className="text-gradient-red">ZÉRO STRESS.</span>
+            </h2>
           </div>
-          <div className="grid md:grid-cols-4 gap-6 relative">
+
+          <div className="grid grid-cols-12 gap-3">
             {[
-              { i: MessageCircle, t: "Contactez-nous", d: "WhatsApp, appel, email ou formulaire." },
-              { i: ClipboardList, t: "Devis instantané", d: "Réponse et tarif sous 15 minutes." },
-              { i: Rocket, t: "Intervention", d: "Notre équipe se déploie immédiatement." },
-              { i: CheckCircle2, t: "Mission accomplie", d: "Vous validez, vous payez. Simple." },
-            ].map((s, i) => (
-              <div key={s.t} className="relative p-8 border border-border bg-background">
-                <div className="font-display text-7xl text-primary/20 leading-none">0{i + 1}</div>
-                <s.i className="w-8 h-8 text-primary mt-4" />
-                <h3 className="mt-4 font-display text-2xl">{s.t}</h3>
-                <p className="mt-2 text-sm text-muted-foreground">{s.d}</p>
+              { i: MessageCircle, t: "Contactez", d: "WhatsApp, appel, email ou formulaire — au choix.", n: "01" },
+              { i: ClipboardList, t: "Devis 15min", d: "Notre équipe revient avec un tarif clair en 15 minutes.", n: "02" },
+              { i: Rocket, t: "Intervention", d: "Nous déployons immédiatement la bonne équipe.", n: "03" },
+              { i: CheckCircle2, t: "Validé", d: "Vous contrôlez. Vous validez. Vous payez. Simple.", n: "04" },
+            ].map((s) => (
+              <div key={s.n} className="col-span-12 md:col-span-6 lg:col-span-3 bento-cell p-8 relative group min-h-[280px] flex flex-col justify-between">
+                <div className="font-display text-[8rem] text-primary/10 leading-none absolute -top-4 -right-2 select-none">{s.n}</div>
+                <s.i className="w-10 h-10 text-primary relative" />
+                <div className="relative">
+                  <h3 className="font-display text-3xl">{s.t}</h3>
+                  <p className="text-sm text-muted-foreground mt-3 leading-relaxed">{s.d}</p>
+                </div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* TESTIMONIALS */}
-      <section className="relative py-28">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="flex items-end justify-between flex-wrap gap-6 mb-14">
-            <div>
-              <div className="text-xs uppercase tracking-[0.4em] text-primary mb-3">— Ils nous ont fait confiance</div>
-              <h2 className="font-display text-5xl md:text-7xl">AVIS <span className="text-primary">CLIENTS</span></h2>
+      {/* ========== TESTIMONIALS BENTO ========== */}
+      <section className="relative py-24 px-4 md:px-6">
+        <div className="max-w-[1500px] mx-auto">
+          <div className="grid grid-cols-12 gap-3">
+            <div className="col-span-12 lg:col-span-4 bento-cell p-10 flex flex-col justify-between min-h-[400px]">
+              <div>
+                <div className="text-[10px] uppercase tracking-[0.4em] text-primary mb-4">— Avis clients</div>
+                <h2 className="font-display text-5xl md:text-6xl leading-[0.9]">
+                  ILS NOUS<br />FONT<br /><span className="text-gradient-red">CONFIANCE.</span>
+                </h2>
+              </div>
+              <div>
+                <div className="flex gap-1">{[...Array(5)].map((_, i) => <Star key={i} className="w-5 h-5 fill-primary text-primary" />)}</div>
+                <div className="font-display text-4xl mt-3">4.9<span className="text-muted-foreground text-2xl">/5</span></div>
+                <div className="text-xs uppercase tracking-[0.3em] text-muted-foreground mt-2">200+ avis vérifiés</div>
+              </div>
             </div>
-            <div className="flex items-center gap-3">
-              <div className="flex">{[...Array(5)].map((_, i) => <Star key={i} className="w-5 h-5 fill-primary text-primary" />)}</div>
-              <span className="text-sm uppercase tracking-widest text-muted-foreground">4.9 / 5 · 200+ avis</span>
-            </div>
-          </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {testimonials.slice(0, 6).map((t, i) => (
-              <figure key={i} className="relative p-8 border border-border bg-card hover:border-primary/50 transition-colors">
-                <Quote className="w-10 h-10 text-primary/30" />
+
+            {testimonials.slice(0, 4).map((t, i) => (
+              <figure key={i} className={`bento-cell p-8 ${i === 0 ? "col-span-12 md:col-span-6 lg:col-span-4" : "col-span-12 md:col-span-6 lg:col-span-4"}`}>
+                <Quote className="w-8 h-8 text-primary" />
                 <blockquote className="mt-4 text-base leading-relaxed">"{t.quote}"</blockquote>
                 <figcaption className="mt-6 pt-6 border-t border-border">
                   <div className="font-display text-xl">{t.name}</div>
-                  <div className="text-xs uppercase tracking-widest text-muted-foreground mt-1">{t.role}</div>
+                  <div className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground mt-1">{t.role}</div>
                 </figcaption>
               </figure>
             ))}
@@ -184,82 +228,81 @@ function Index() {
         </div>
       </section>
 
-      {/* PRICING TEASER */}
-      <section className="relative py-28 border-y border-border bg-card/50">
-        <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center">
-          <div>
-            <div className="text-xs uppercase tracking-[0.4em] text-primary mb-3">— Tarifs simples</div>
-            <h2 className="font-display text-5xl md:text-6xl leading-tight">À PARTIR DE<br /><span className="text-gradient-red">1 500 FCFA</span></h2>
-            <p className="mt-6 text-lg text-muted-foreground">Une formule express pour vos missions ponctuelles, des forfaits Pro pour les indépendants, des contrats sur mesure pour les entreprises.</p>
-            <Link to="/pricing" className="mt-8 inline-flex items-center gap-3 bg-primary text-primary-foreground px-8 py-4 font-semibold uppercase tracking-widest text-sm" style={{ boxShadow: "var(--shadow-red)" }}>
-              Voir les formules <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
-          <div className="grid grid-cols-1 gap-4">
-            {[
-              { n: "Express", p: "1 500 FCFA", d: "Course unique" },
-              { n: "Pro", p: "45 000 FCFA / mois", d: "30 courses + multiservices", h: true },
-              { n: "Entreprise", p: "Sur devis", d: "Volume illimité, équipe dédiée" },
-            ].map((p) => (
-              <div key={p.n} className={`p-6 border flex items-center justify-between ${p.h ? "border-primary bg-primary/5" : "border-border bg-background"}`}>
-                <div>
-                  <div className="font-display text-2xl">{p.n}</div>
-                  <div className="text-xs uppercase tracking-widest text-muted-foreground mt-1">{p.d}</div>
-                </div>
-                <div className="font-display text-xl text-primary">{p.p}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* ========== PRICING + LOCATION BENTO ========== */}
+      <section className="relative py-24 px-4 md:px-6">
+        <div className="max-w-[1500px] mx-auto grid grid-cols-12 gap-3">
+          <div className="col-span-12 lg:col-span-7 bento-cell p-10 md:p-14">
+            <div className="text-[10px] uppercase tracking-[0.4em] text-primary mb-4">— Tarifs</div>
+            <h2 className="font-display text-6xl md:text-7xl leading-[0.85]">
+              DÈS<br /><span className="text-gradient-red">1500 FCFA.</span>
+            </h2>
+            <p className="text-muted-foreground mt-6 max-w-lg">Une formule express pour vos missions ponctuelles, des forfaits Pro pour les indépendants, des contrats sur mesure pour les entreprises.</p>
 
-      {/* BLOG TEASER */}
-      <section className="relative py-28">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="flex items-end justify-between flex-wrap gap-6 mb-14">
-            <div>
-              <div className="text-xs uppercase tracking-[0.4em] text-primary mb-3">— Le journal</div>
-              <h2 className="font-display text-5xl md:text-7xl">BLOG & <span className="text-primary">ACTUS</span></h2>
+            <div className="mt-10 space-y-2">
+              {[
+                { n: "Express", p: "1 500 FCFA", d: "Course unique" },
+                { n: "Pro", p: "45 000 FCFA / mois", d: "30 courses + multiservices", h: true },
+                { n: "Entreprise", p: "Sur devis", d: "Volume illimité, équipe dédiée" },
+              ].map((p) => (
+                <div key={p.n} className={`p-5 border flex items-center justify-between transition-colors ${p.h ? "border-primary bg-primary/5" : "border-border hover:border-primary/50"}`}>
+                  <div>
+                    <div className="font-display text-xl">{p.n}</div>
+                    <div className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground mt-1">{p.d}</div>
+                  </div>
+                  <div className="font-display text-lg text-primary">{p.p}</div>
+                </div>
+              ))}
             </div>
-            <Link to="/blog" className="text-sm uppercase tracking-widest text-muted-foreground hover:text-primary inline-flex items-center gap-2">
-              Tous les articles <ArrowRight className="w-4 h-4" />
+
+            <Link to="/pricing" className="mt-8 inline-flex items-center gap-3 bg-primary text-primary-foreground px-7 py-4 font-bold uppercase tracking-[0.2em] text-xs" style={{ boxShadow: "var(--shadow-red)" }}>
+              Toutes les formules <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
-          <div className="grid md:grid-cols-3 gap-6">
-            {[
-              { tag: "Livraison", date: "12 Mai 2026", title: "Optimisez vos envois à Yaoundé" },
-              { tag: "Multiservices", date: "05 Mai 2026", title: "Externaliser le nettoyage de vos bureaux" },
-              { tag: "Actualité", date: "20 Avril 2026", title: "TaraServices étend sa couverture à Douala" },
-            ].map((a, i) => (
-              <Link key={i} to="/blog" className="group p-8 border border-border bg-card hover:border-primary transition-all block">
-                <span className="text-xs uppercase tracking-[0.3em] text-primary">{a.tag}</span>
-                <h3 className="mt-4 font-display text-2xl group-hover:text-primary transition-colors">{a.title}</h3>
-                <div className="mt-6 pt-6 border-t border-border flex items-center justify-between text-xs uppercase tracking-widest text-muted-foreground">
-                  <span className="flex items-center gap-2"><Calendar className="w-3.5 h-3.5" />{a.date}</span>
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </div>
-              </Link>
-            ))}
+
+          <div className="col-span-12 lg:col-span-5 grid grid-rows-2 gap-3">
+            <div className="bento-cell relative overflow-hidden min-h-[260px] group">
+              <img src={cityImg} alt="Yaoundé de nuit" width={1280} height={896} loading="lazy" className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-80 transition-opacity" />
+              <div className="absolute inset-0 bg-gradient-to-t from-background to-transparent" />
+              <div className="absolute bottom-0 left-0 right-0 p-6">
+                <MapPin className="w-7 h-7 text-primary" />
+                <div className="font-display text-2xl mt-3">YAOUNDÉ</div>
+                <div className="text-xs text-muted-foreground uppercase tracking-[0.3em] mt-1">Hôtel de Ville · Centre</div>
+              </div>
+            </div>
+            <div className="bento-cell p-8 flex flex-col justify-between min-h-[260px] bg-primary/5">
+              <TrendingUp className="w-10 h-10 text-primary" />
+              <div>
+                <div className="font-display text-3xl">+200%</div>
+                <div className="text-xs text-muted-foreground uppercase tracking-[0.3em] mt-2">Croissance mensuelle des missions en 2026</div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="relative py-28 overflow-hidden">
-        <div className="absolute inset-0 bg-grid-red" />
-        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full border border-primary/20" />
-        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full border border-primary/30" />
-        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] rounded-full border border-primary/40" />
-        <div className="relative max-w-3xl mx-auto px-6 text-center">
-          <h2 className="font-display text-5xl md:text-7xl">UN BESOIN ?<br /><span className="text-gradient-red">UN APPEL SUFFIT.</span></h2>
-          <p className="mt-6 text-lg text-muted-foreground">Appelez-nous ou écrivez-nous sur WhatsApp. Nous intervenons immédiatement.</p>
-          <div className="mt-10 flex flex-wrap justify-center gap-4">
-            <a href="https://wa.me/237659315165" target="_blank" rel="noreferrer" className="inline-flex items-center gap-3 bg-primary text-primary-foreground px-8 py-4 font-semibold uppercase tracking-widest text-sm" style={{ boxShadow: "var(--shadow-red)" }}>
+      {/* ========== FINAL CTA ========== */}
+      <section className="relative py-32 px-4 md:px-6 overflow-hidden">
+        <div className="absolute inset-0 bg-noise" />
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full border border-primary/30 animate-spin-slow" />
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full border border-primary/40" />
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] rounded-full bg-primary/10 blur-3xl" />
+
+        <div className="relative max-w-4xl mx-auto text-center">
+          <img src={logo} alt="" width={64} height={64} className="w-16 h-16 mx-auto opacity-90" />
+          <h2 className="mt-8 font-display text-6xl md:text-8xl lg:text-9xl leading-[0.85]">
+            UN BESOIN ?<br /><span className="text-gradient-red">UN APPEL.</span>
+          </h2>
+          <p className="mt-8 text-lg text-muted-foreground max-w-xl mx-auto">Notre équipe est en ligne, 24h sur 24, 7 jours sur 7. Une seule mission : votre satisfaction.</p>
+          <div className="mt-12 flex flex-wrap justify-center gap-3">
+            <a href="https://wa.me/237659315165" target="_blank" rel="noreferrer" className="inline-flex items-center gap-3 bg-primary text-primary-foreground px-8 py-5 font-bold uppercase tracking-[0.2em] text-xs hover:-translate-y-0.5 transition-all" style={{ boxShadow: "var(--shadow-red)" }}>
+              <MessageCircle className="w-4 h-4" /> WhatsApp
+            </a>
+            <a href="tel:+237659315165" className="inline-flex items-center gap-3 border border-border px-8 py-5 font-bold uppercase tracking-[0.2em] text-xs hover:border-primary hover:text-primary transition-colors">
               <Phone className="w-4 h-4" /> 659 315 165
             </a>
-            <Link to="/contact" className="inline-flex items-center gap-3 border border-border px-8 py-4 font-semibold uppercase tracking-widest text-sm hover:border-primary">
-              Tous les contacts
-            </Link>
+            <a href="mailto:yannickoberts@gmail.com" className="inline-flex items-center gap-3 border border-border px-8 py-5 font-bold uppercase tracking-[0.2em] text-xs hover:border-primary hover:text-primary transition-colors">
+              <Mail className="w-4 h-4" /> Email
+            </a>
           </div>
         </div>
       </section>
